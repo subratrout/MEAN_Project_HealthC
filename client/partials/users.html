@@ -1,0 +1,18 @@
+    <div ng-controller = "UsersController" id="form">
+        <h2>Register</h2>
+            <form ng-submit ="addUser()">
+                First Name: <input type="text" ng-model = "new_user.first_name">
+                Last Name: <input type="text" ng-model = "new_user.last_name" >
+                Email address: <input type="text" ng-model = "new_user.email">
+                Password: <input type="password" ng-model = "new_user.password" >
+                Confirm Password: <input type="password" >
+                <input type="submit" class = 'btn' >
+            </form>
+
+        <h2>Login</h2>
+            <form ng-submit ="loginUser()">
+               Email address: <input type="text" ng-model = "loginUser.email">
+               Password: <input type="password" ng-model = "loginUser.password" >
+                <input type="submit" class = 'btn' >
+            </form>
+    </div>

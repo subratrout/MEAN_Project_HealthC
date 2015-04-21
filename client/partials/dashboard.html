@@ -1,0 +1,37 @@
+<div ng-controller="DashboardController">
+    <h1>Topics</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Category</th>
+            <th>ID</th>
+            <th>Topic</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="topic in topics | filter:filter_name" >
+            <td>{{topic.category}}</td>
+            <td><a href="#/topic/{{topic._id}}">{{topic.topic}}</a></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+<div ng-controller = "TopicsController" id="topic">
+
+    <form ng-submit ="addTopic()">
+        Topic Title: <input type="text" ng-model = "new_topic.topic">
+        Description: <textarea ng-model = "new_topic.description" ></textarea>
+        Category: <select ng-model="new_topic.category">
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="Javascript">Javascript</option>
+        <option value="nodeJS">NodeJS</option>
+    </select>
+        <input type="submit" class = 'btn' >
+    </form>
+</div>
