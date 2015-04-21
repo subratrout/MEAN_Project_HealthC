@@ -28,7 +28,8 @@ var port = process.env.PORT || 8000;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
+// log all requests to console
+app.use(morgan('dev'))
 // This goes in our server.js file so that we actually use the mongoose config file!
 // Load mongoose before route loading
 require('./config/mongoose.js');
