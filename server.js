@@ -34,6 +34,8 @@ app.use(morgan('dev'))
 // Load mongoose before route loading
 require('./config/mongoose.js');
 
+require('./config/app.js');
+
 // require routes file
 require('./config/routes.js')(app);
 

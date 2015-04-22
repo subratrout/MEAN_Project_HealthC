@@ -14,6 +14,35 @@ var UserSchema = new mongoose.Schema({
   date_string: Number
 });
 
+// hash the password before user is saved
+
+UserSchema.pre('save', function(next){
+	var user = this;
+	if(!user.isModified('password'))
+	{
+		return next();
+	}
+	else
+	{
+		bcrypt.hash(user.password, null, null, function(err, hash){
+			if(err){
+				return next(err);
+			}
+			else{
+				user.password = hash;
+				next();
+			}
+		})
+	}
+})
+
+//method to compare a given password with the database hash
+
+UserSchema.methods.comparePassword = function(password){
+	var user = this;
+	return bcrypt.compareSync(password, user.password);
+}
+
 // use the schema to create the model
 // Note that creating a model CREATES the collection in the database (makes the collection plural)
 

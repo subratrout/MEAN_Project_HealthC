@@ -5,7 +5,7 @@ module.exports = function(app){
 	
 
 	app.get('/users', function(req, res){
-		customers.show(req,res);
+		users.show(req,res);
 
 	});
 

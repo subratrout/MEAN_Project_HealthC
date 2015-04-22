@@ -13,15 +13,36 @@ module.exports = (function() {
 		  	add: function(req, res) {
 		  		var d = new Date();
 				current_date = d.getTime();
-			  	var user = User({first_name: req.body.first_name, last_name: req.body.last_name, email: req.body.email, password: req.body.password, created_at: d, date_string: current_date})
+				console.log("contoller view", req.body);
+			  	var user = User({first_name: req.body.first_name, last_name: req.body.last_name, username: req.body.username, email: req.body.email, password: req.body.password, created_at: d, date_string: current_date})
 			  	console.log(user);
 				  user.save(function(err, results) {
-					  if(err) {
-						  console.log(err);
-					  } else {
-						  res.json(results);
-					  }
+					  if(err) 
+					  	{
+						  	if(err.code ==11000)
+						  	{
+						  		return res.json({success: false , message: "A user with that username already exists."})
+						  	}
+						  	else 
+						  	{
+							  console.log(err);
+						  	}
+					  	}
+					  else 
+					   {
+						  res.json({success: true, message: "User created!"});
+					   }
 				  	})
-		  	}
+		  	},
+		  	
+		  	show: function(req, res) {
+            User.find({}, function(err, results) {
+                if(err) {
+                    console.log(err);
+                } else {
+                    res.json(results);
+                }
+            })
+        },
   		}
 })();
